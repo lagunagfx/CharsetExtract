@@ -30,9 +30,6 @@
 #include <stdbool.h>
 #include <unistd.h>
 
-/*
-*/
-
 #define CHARSET_OFFSET	15616	// position of the CHARSET within the ZX Spectrum ROM
 #define CHARSET_SIZE	96*8	// 96 characters, 8 bytes each 
 
@@ -41,7 +38,10 @@ int count = CHARSET_SIZE;
 char character;
 
 void usage() {
-    printf("Usage: charset-extractor <infile> <outfile>\n");
+    printf("Usage: charset-extractor -f <infile> <outfile>\n");
+    printf("   -t,   --text          Outputs a plain ASCII text representation of the charset to the standard output\n");
+    printf("   -r,   --raw           Extracts the raw binary charset from the ROM file, without modification");
+    printf("   -h,   --help          Show this help message\n");
 }
 
 void drawbytes(char b) {
@@ -62,12 +62,16 @@ int main( int argc, char **argv ) {
     bool outAscii = false;
     bool outBinaryFile = false;
 
-    while ( ( cli = getopt(argc,argv,"aoh?") ) != -1 ) {
+    while ( ( cli = getopt(argc,argv,"frth?") ) != -1 ) {
 	switch(cli) {
-	    case 'a':
+	    case 'f':
+		//if ( argv[] )
+		//romfile = fopen
+		break;
+	    case 't':
 		outAscii = true;
 		break;
-	    case 'o':
+	    case 'r':
 		outBinaryFile = true;
 		break;
 	    case 'h':
