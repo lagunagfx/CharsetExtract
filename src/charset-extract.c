@@ -65,6 +65,8 @@ int main( int argc, char **argv ) {
     bool out_ascii = false;
     bool out_raw = false;
 
+    // command line argument handling
+
     if ( argc < 2 ) {
 	usage();
 	exit(0);
@@ -102,6 +104,8 @@ int main( int argc, char **argv ) {
 	}
     }
 
+    // filesystem handling
+
     printf("Opening ROM file %s\n", filename);
     romfile = fopen(filename,"rb");
 
@@ -111,8 +115,6 @@ int main( int argc, char **argv ) {
     if ( romfile == NULL ) {
 	printf("Error opening file\n");
 	return -1;
-    } else {
-	printf("ROM file: %s\n", filename);
     }
 
     printf("Offset %i",CHARSET_OFFSET) ;
